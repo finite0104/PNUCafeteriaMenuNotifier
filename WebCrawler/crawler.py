@@ -18,4 +18,4 @@ def func_crawling() :
 
 while(True) :
 	func_crawling()
-	sleep(30)
+	sleep(60*60)
