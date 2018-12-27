@@ -1,0 +1,139 @@
+1545814407259	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.JU22THME32V7"
+*** You are running in headless mode.
+1545814408243	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545814408244	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545814870591	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.JpQxyiyCYOIt"
+*** You are running in headless mode.
+1545814871714	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545814871714	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545814888887	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.muV3hftGbKC0"
+*** You are running in headless mode.
+1545814889558	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545814889559	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545815187160	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.97MqhJvHqOsu"
+*** You are running in headless mode.
+1545815188231	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545815188231	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545815190389	Marionette	INFO	Listening on port 36624
+1545815190476	Marionette	WARN	TLS certificate errors will be ignored for this session
+1545815190617	Marionette	INFO	Stopped listening on port 36624
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.
+JavaScript error: resource://gre/modules/IndexedDB.jsm, line 349: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1545815216909	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.LRHiYLcb1h7f"
+*** You are running in headless mode.
+1545815217352	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545815217352	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545815219072	Marionette	INFO	Listening on port 44826
+1545815219132	Marionette	WARN	TLS certificate errors will be ignored for this session
+1545815219271	Marionette	INFO	Stopped listening on port 44826
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.
+1545815278877	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.gMb8NkJBthse"
+*** You are running in headless mode.
+1545815279325	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545815279325	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545815281061	Marionette	INFO	Listening on port 45854
+1545815281094	Marionette	WARN	TLS certificate errors will be ignored for this session
+1545815281162	Marionette	INFO	Stopped listening on port 45854
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.
+JavaScript error: resource://gre/modules/IndexedDB.jsm, line 349: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1545844516384	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.N0nGlCJXvXDR"
+*** You are running in headless mode.
+1545844516829	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545844516829	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545844518561	Marionette	INFO	Listening on port 35098
+1545844518595	Marionette	WARN	TLS certificate errors will be ignored for this session
+1545844518660	Marionette	INFO	Stopped listening on port 35098
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.
+1545877827000	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.10RDnV0q9hqU"
+*** You are running in headless mode.
+1545877827441	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545877827441	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545877829148	Marionette	INFO	Listening on port 43813
+1545877829209	Marionette	WARN	TLS certificate errors will be ignored for this session
+1545877829327	Marionette	INFO	Stopped listening on port 43813
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 841: Error: Connection is not open.
+JavaScript error: resource://gre/modules/IndexedDB.jsm, line 349: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1545877893986	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.PevVUyYR8fDD"
+*** You are running in headless mode.
+1545877894431	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545877894431	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545877896165	Marionette	INFO	Listening on port 33436
+1545877896196	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://www.pusan.ac.kr/_contents/kor/_Js/topmenu.js, line 652: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+1545877898302	Marionette	INFO	Stopped listening on port 33436
+1545877904077	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Cfh5bexoOwG1"
+*** You are running in headless mode.
+1545877904607	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545877904607	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545877906342	Marionette	INFO	Listening on port 38602
+1545877906387	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://www.pusan.ac.kr/_contents/kor/_Js/topmenu.js, line 652: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+1545877908315	Marionette	INFO	Stopped listening on port 38602
+1545877911033	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.W642ZiunX7Zt"
+*** You are running in headless mode.
+1545877911468	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545877911468	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545877913145	Marionette	INFO	Listening on port 37376
+1545877913256	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://www.pusan.ac.kr/_contents/kor/_Js/topmenu.js, line 652: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+1545877916148	Marionette	INFO	Stopped listening on port 37376
+1545877967859	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Xb4pJk1goN8K"
+*** You are running in headless mode.
+1545877968306	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545877968307	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545877970031	Marionette	INFO	Listening on port 35736
+1545877970077	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://www.pusan.ac.kr/_contents/kor/_Js/topmenu.js, line 652: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+1545877971918	Marionette	INFO	Stopped listening on port 35736
+1545878018578	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.BnpW3tzB9QxZ"
+*** You are running in headless mode.
+1545878019005	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545878019006	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545878020750	Marionette	INFO	Listening on port 35023
+1545878020791	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://www.pusan.ac.kr/_contents/kor/_Js/topmenu.js, line 652: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+1545878022741	Marionette	INFO	Stopped listening on port 35023
+1545878054296	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.8kwJ8HDt0R52"
+*** You are running in headless mode.
+1545878054745	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545878054745	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+1545878056493	Marionette	INFO	Listening on port 46137
+1545878056510	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://www.pusan.ac.kr/_contents/kor/_Js/topmenu.js, line 652: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 87: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-75737770-2, line 147: unreachable code after return statement
+1545878058528	Marionette	INFO	Stopped listening on port 46137
