@@ -32,9 +32,18 @@ def func_crawling() :
 		td는 최대 4까지 나올 수 있다고 가정하고 수행함
 		"""
 		for data in meal_list :
-			result = ""
 			menu_data = data.find_all("li")
-
+			if(menu_data is None) :
+				#데이터 없음으로 할당하고 counter 올려줌
+				result = "None Data"
+				print (date_string + ", " + date_number + ", " + location + " -> " + counter + " :: " + result)
+			else :
+				#데이터에 대한 입력처리(데이터베이스) 수행하고 counter 올려줌
+				for data in menu_data :
+					#데이터들 순회하면서 데이터 입력처리함
+					name = data.h3.text
+					menu = data.p.text
+					print (date_string + ", " + date_number + ", " + location + " -> " + counter + " :: " + name + " : " + menu)
 
 	driver.quit()
 
