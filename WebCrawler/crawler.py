@@ -33,7 +33,7 @@ def func_crawling() :
 		"""
 		for data in meal_list :
 			menu_data = data.find_all("li")
-			if(menu_data is None) :
+			if(len(menu_data) == 0) :
 				#데이터 없음으로 할당하고 counter 올려줌
 				result = "None Data"
 				print (date_string + ", " + date_number + ", " + location + " -> " + str(counter) + " :: " + result)
