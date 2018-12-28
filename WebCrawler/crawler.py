@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from time import sleep
-import pymongo
+#import pymongo
 
 def func_crawling() :
 	options = Options()
@@ -12,8 +12,8 @@ def func_crawling() :
 
 	html = driver.page_source
 	soup = BeautifulSoup(html)
-	date_string = soup.find_all("span", {"class": "loca"}).text
-	date_number = soup.find_all("span", {"class": "term"}).text
+	date_string = soup.find_all("span", {"class": "loca"})[0].text
+	date_number = soup.find_all("span", {"class": "term"})[0].text
 	school_meal_table = soup.find_all("table", {"class": "menu-tbl"})[0]
 	table_body = school_meal_table.find_all("tbody")[0]
 	table_datas = table_body.find_all("tr")
