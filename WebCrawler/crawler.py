@@ -22,31 +22,29 @@ def func_crawling() :
 		counter = 0
 		location = row.find_all("th")[0].text
 		meal_list = row.find_all("td")
-		"""
-		td 내부의 li 검색, 있는 경우 h3/p Tag 데이터를 저장하고 없으면 result로 없음을 Return
-		counter는 조식 중식 석식 야식 구분으로 사용
-		0 조식
-		1 중식
-		2 석식
-		3 야식
-		td는 최대 4까지 나올 수 있다고 가정하고 수행함
-		"""
 		for data in meal_list :
 			menu_data = data.find_all("li")
 			if(len(menu_data) == 0) :
-				#데이터 없음으로 할당하고 counter 올려줌
 				result = "None Data"
-				print (date_string + ", " + date_number + ", " + location + " -> " + str(counter) + " :: " + result)
+				time = count_to_time(counter)
+				print (date_string + ", " + date_number + ", " + location + " -> " + time + " :: " + result)
 			else :
-				#데이터에 대한 입력처리(데이터베이스) 수행하고 counter 올려줌
 				for data in menu_data :
-					#데이터들 순회하면서 데이터 입력처리함
 					name = data.h3.text
 					menu = data.p.text
-					print (date_string + ", " + date_number + ", " + location + " -> " + str(counter) + " :: " + name + " : " + menu)
+					time = count_to_time(counter)
+					print (date_string + ", " + date_number + ", " + location + " -> " + time + " :: " + name + " : " + menu)
 			counter = counter + 1
 
 	driver.quit()
+
+def count_to_time(count) :
+	return {
+		0 : "조식",
+		1 : "점심",
+		2 : "저녁",
+		3 : "야식"
+	}.get(count, "점심")
 
 if __name__ == "__main__" :
 	while(True) :
