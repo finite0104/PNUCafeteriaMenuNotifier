@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from time import sleep
-#import pymongo
+import pymongo
 
 def func_crawling() :
 	options = Options()
@@ -25,15 +25,14 @@ def func_crawling() :
 		for data in meal_list :
 			menu_data = data.find_all("li")
 			if(len(menu_data) == 0) :
-				result = "None Data"
-				time = count_to_time(counter)
-				print (date_string + ", " + date_number + ", " + location + " -> " + time + " :: " + result)
+				result = "데이터 없음"
+
 			else :
 				for data in menu_data :
 					name = data.h3.text
 					menu = data.p.text
-					time = count_to_time(counter)
-					print (date_string + ", " + date_number + ", " + location + " -> " + time + " :: " + name + " : " + menu)
+
+
 			counter = counter + 1
 
 	driver.quit()
@@ -45,6 +44,80 @@ def count_to_time(count) :
 		2 : "저녁",
 		3 : "야식"
 	}.get(count, "점심")
+
+def data_insert(date_string, date_number, location, count, result) :
+	conn = pymongo.MongoClient("localhost", 27017)
+	db = conn.meal_data
+	collection = db.getCollection(date_number + '')
+
+	time = count_to_time(count)
+	if count == 0 :
+		#데이터 생성
+		collection.insertOne(
+			{
+				'day' : date_string,
+				'date' : date_number,
+				'location' : location,
+				'arr_menu' : [
+					{
+						'time' : time,
+						'menu' : result
+					}
+				]
+			}
+		)
+	else :
+		#데이터 추가(array 부분에)
+		collection.update(
+			{
+				'date' : date_number,
+				'$push' : {
+					'arr_menu' : {
+						'time' : time,
+						'menu' : result
+					}
+				}
+			}
+		)
+
+	conn.close()
+
+def data_insert(date_string, date_number, location, count, name, menu) :
+	conn = pymongo.MongoClient("localhost", 27017)
+	db = conn.meal_data
+	collection = db.getCollection(date_number + '')
+
+	time = count_to_time(count)
+	if count == 0 :
+		#데이터 생성
+		collection.insertOne(
+			{
+				'day' : date_string,
+				'date' : date_number,
+				'location' : location,
+				'arr_menu' : [
+					{
+						'time' : time,
+						'menu' : name + ' : ' + menu
+					}
+				]
+			}
+		)
+	else :
+		#데이터 추가(array 부분에)
+		collection.update(
+			{
+				'date' : date_number,
+				'$push' : {
+					'arr_menu' : {
+						'time' : time,
+						'menu' : name + ' : ' + menu
+					}
+				}
+			}
+		)
+
+	conn.close()
 
 if __name__ == "__main__" :
 	while(True) :
