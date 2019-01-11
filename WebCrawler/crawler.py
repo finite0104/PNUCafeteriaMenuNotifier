@@ -26,12 +26,12 @@ def func_crawling() :
 			menu_data = data.find_all("li")
 			if(len(menu_data) == 0) :
 				result = "데이터 없음"
-
+				data_insert(date_string, date_number, location, counter, result)
 			else :
 				for data in menu_data :
 					name = data.h3.text
 					menu = data.p.text
-
+					data_insert(date_string, date_number, location, counter, name, menu)
 
 			counter = counter + 1
 
@@ -66,6 +66,7 @@ def data_insert(date_string, date_number, location, count, result) :
 				]
 			}
 		)
+		print(time + ' : ' + result)
 	else :
 		#데이터 추가(array 부분에)
 		collection.update(
@@ -79,6 +80,7 @@ def data_insert(date_string, date_number, location, count, result) :
 				}
 			}
 		)
+		print(time + ' : ' + result)
 
 	conn.close()
 
@@ -103,6 +105,7 @@ def data_insert(date_string, date_number, location, count, name, menu) :
 				]
 			}
 		)
+		print(time + ' : ' + menu)
 	else :
 		#데이터 추가(array 부분에)
 		collection.update(
@@ -116,6 +119,7 @@ def data_insert(date_string, date_number, location, count, name, menu) :
 				}
 			}
 		)
+		print(time + ' : ' + menu)
 
 	conn.close()
 
