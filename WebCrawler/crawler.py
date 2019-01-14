@@ -72,12 +72,15 @@ def data_insert(date_string, date_number, location, count, result) :
 		collection.update(
 			{
 				'date' : date_number,
-				'$push' : {
+				'location' : location
+			},
+			{
+				 '$push' : {
 					'arr_menu' : {
 						'time' : time,
 						'menu' : result
 					}
-				}
+				 }
 			}
 		)
 		print(time + ' : ' + result)
@@ -111,6 +114,9 @@ def data_insert(date_string, date_number, location, count, name, menu) :
 		collection.update(
 			{
 				'date' : date_number,
+				'location' : location
+			},
+			{
 				'$push' : {
 					'arr_menu' : {
 						'time' : time,
