@@ -26,12 +26,12 @@ def func_crawling() :
 			menu_data = data.find_all("li")
 			if(len(menu_data) == 0) :
 				result = "데이터 없음"
-				data_insert(date_string, date_number, location, counter, result)
+				non_menu_data_insert(date_string, date_number, location, counter, result)
 			else :
 				for data in menu_data :
 					name = data.h3.text
 					menu = data.p.text
-					data_insert(date_string, date_number, location, counter, name, menu)
+					menu_data_insert(date_string, date_number, location, counter, name, menu)
 
 			counter = counter + 1
 
@@ -45,7 +45,7 @@ def count_to_time(count) :
 		3 : "야식"
 	}.get(count, "점심")
 
-def data_insert(date_string, date_number, location, count, result) :
+def non_menu_data_insert(date_string, date_number, location, count, result) :
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
 	collection = db.getCollection(date_number + '')
@@ -87,7 +87,7 @@ def data_insert(date_string, date_number, location, count, result) :
 
 	conn.close()
 
-def data_insert(date_string, date_number, location, count, name, menu) :
+def menu_data_insert(date_string, date_number, location, count, name, menu) :
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
 	collection = db.getCollection(date_number + '')
