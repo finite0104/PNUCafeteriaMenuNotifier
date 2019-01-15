@@ -35,8 +35,6 @@ def func_crawling() :
 						menu_data_insert(date_string, date_number, location, counter, name, menu)
 
 				counter = counter + 1
-	except :
-		print('Crawling Error Occured')
 	finally :
 		driver.quit()
 
@@ -56,7 +54,7 @@ def non_menu_data_insert(date_string, date_number, location, count, result) :
 	time = count_to_time(count)
 	if count == 0 :
 		#데이터 생성
-		collection.insertOne(
+		collection.insert(
 			{
 				'day' : date_string,
 				'date' : date_number,
@@ -98,7 +96,7 @@ def menu_data_insert(date_string, date_number, location, count, name, menu) :
 	time = count_to_time(count)
 	if count == 0 :
 		#데이터 생성
-		collection.insertOne(
+		collection.insert(
 			{
 				'day' : date_string,
 				'date' : date_number,
