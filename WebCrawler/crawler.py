@@ -6,6 +6,13 @@ import pymongo
 
 def func_crawling() :
 	try :
+		"""
+		데이터들에 대한 \n, \t 문자 제거 작업
+		
+		Menu 데이터는 \n 데이터를 , 또는 / 등으로 치환하여 
+		어떤 메뉴인지를 쉽게 판별할 수 있도록 설정
+		"""
+
 		options = Options()
 		options.set_headless(True)
 		driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
@@ -49,7 +56,7 @@ def count_to_time(count) :
 def non_menu_data_insert(date_string, date_number, location, count, result) :
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
-	collection = db.date_number
+	collection = db[date_number]
 
 	time = count_to_time(count)
 	if count == 0 :
@@ -91,7 +98,11 @@ def non_menu_data_insert(date_string, date_number, location, count, result) :
 def menu_data_insert(date_string, date_number, location, count, name, menu) :
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
-	collection = db.date_number
+	collection = db[date_number]
+	"""
+	MongoDB의 DB Collection에 대한 Naming 처리 작업
+	Menu 데이터에 대한 Error 처리작업(어떤 Error가 발생하는지 한번 더 확인 후에 작업 진행)
+	"""
 
 	time = count_to_time(count)
 	if count == 0 :
