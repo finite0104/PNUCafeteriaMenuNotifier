@@ -30,11 +30,11 @@ def func_crawling() :
 					non_menu_data_insert(date_string, date_number, location, counter, result)
 				else :
 					for data in menu_data :
+						#메뉴 제목 존재여부 판별 후, 없으면 임의로 입력함
 						if(data.h3 != None) :
 							title = data.h3.text.replace(' ', '')
 						else :
 							title = "메뉴"
-
 						#식단 데이터의 잘못된 comma 삭제하는 함수 실행, 결과값을 가져옴
 						menu = modify_menu_text(data.p.text.replace('\n', ', '))
 
@@ -52,6 +52,7 @@ def func_crawling() :
 		driver.quit()
 
 def modify_menu_text(text) :
+	#텍스트 끝 두 자리가 ', '이면 그 문자열을 없애도록 함
 	if text.rfind(', ') == (len(text) - 2) :
 		result = text[:-2]
 	else :
