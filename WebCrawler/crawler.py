@@ -36,8 +36,17 @@ def func_crawling() :
 					result = "데이터 없음"
 					non_menu_data_insert(date_string, date_number, location, counter, result)
 				else :
+					"""
+					File "crawler.py", line 33, in func_crawling
+					name = data.h3.text
+					AttributeError: 'NoneType' object has no attribute 'text'
+					--> Menu Title 없을 때가 있음.. IF-ELSE 처리
+					"""
 					for data in menu_data :
-						name = data.h3.text
+						if(data.h3 != None) :
+							name = data.h3.text
+						else :
+							name = "메뉴"
 						menu = data.p.text
 						menu_data_insert(date_string, date_number, location, counter, name, menu)
 
