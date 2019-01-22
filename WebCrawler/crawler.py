@@ -37,7 +37,6 @@ def func_crawling() :
 					non_menu_data_insert(date_string, date_number, location, counter, result)
 				else :
 					"""
-					File "crawler.py", line 33, in func_crawling
 					name = data.h3.text
 					AttributeError: 'NoneType' object has no attribute 'text'
 					--> Menu Title 없을 때가 있음.. IF-ELSE 처리
@@ -45,9 +44,11 @@ def func_crawling() :
 					for data in menu_data :
 						if(data.h3 != None) :
 							name = data.h3.text
+							name = name.replace('\n', '').replace.('\t', '')
 						else :
 							name = "메뉴"
 						menu = data.p.text
+						menu = menu.replace('\n', ', ')
 						menu_data_insert(date_string, date_number, location, counter, name, menu)
 
 				counter = counter + 1
@@ -108,10 +109,6 @@ def menu_data_insert(date_string, date_number, location, count, name, menu) :
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
 	collection = db[date_number]
-	"""
-	MongoDB의 DB Collection에 대한 Naming 처리 작업
-	Menu 데이터에 대한 Error 처리작업(어떤 Error가 발생하는지 한번 더 확인 후에 작업 진행)
-	"""
 
 	time = count_to_time(count)
 	if count == 0 :
