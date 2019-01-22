@@ -28,12 +28,12 @@ def func_crawling() :
 
 		for row in table_datas :
 			counter = 0
-			location = row.find_all("th")[0].text
+			location = row.find_all("th")[0].text.replace('\t', '').replace('\n', '')
 			meal_list = row.find_all("td")
 			for data in meal_list :
 				menu_data = data.find_all("li")
 				if(len(menu_data) == 0) :
-					result = "데이터 없음"
+					result = "식단 없음"
 					non_menu_data_insert(date_string, date_number, location, counter, result)
 				else :
 					"""
@@ -43,13 +43,18 @@ def func_crawling() :
 					"""
 					for data in menu_data :
 						if(data.h3 != None) :
-							name = data.h3.text
-							name = name.replace('\n', '').replace('\t', '')
+							title = data.h3.text
 						else :
-							name = "메뉴"
-						menu = data.p.text
-						menu = menu.replace('\n', ', ')
-						menu_data_insert(date_string, date_number, location, counter, name, menu)
+							title = "메뉴"
+						menu = data.p.text.replace('\n', ', ')
+						#메뉴에 가격이 있는경우, 가격도 저장될 수 있도록 설정
+						if title.find('-') != -1 :
+							#가격 있는 경우 --> split 수행하고, 데이터 저장
+							title_array = title.split('-')
+							menu_exchange_data_insert(date_string, date_number, location, counter,
+													  title_array[0], title_array[1], menu)
+						else :
+							menu_data_insert(date_string, date_number, location, counter, title, menu)
 
 				counter = counter + 1
 	finally :
@@ -79,7 +84,7 @@ def non_menu_data_insert(date_string, date_number, location, count, result) :
 				'arr_menu' : [
 					{
 						'time' : time,
-						'menu' : result
+						'name' : result
 					}
 				]
 			}
@@ -96,7 +101,7 @@ def non_menu_data_insert(date_string, date_number, location, count, result) :
 				 '$push' : {
 					'arr_menu' : {
 						'time' : time,
-						'menu' : result
+						'name' : result
 					}
 				 }
 			}
@@ -121,12 +126,13 @@ def menu_data_insert(date_string, date_number, location, count, name, menu) :
 				'arr_menu' : [
 					{
 						'time' : time,
-						'menu' : name + ' : ' + menu
+						'name' : name,
+						'menu' : menu
 					}
 				]
 			}
 		)
-		print(time + ' : ' + menu)
+		print(time + ' : ' + name)
 	else :
 		#데이터 추가(array 부분에)
 		collection.update(
@@ -138,12 +144,59 @@ def menu_data_insert(date_string, date_number, location, count, name, menu) :
 				'$push' : {
 					'arr_menu' : {
 						'time' : time,
-						'menu' : name + ' : ' + menu
+						'name' : name,
+						'menu' : menu
 					}
 				}
 			}
 		)
-		print(time + ' : ' + menu)
+		print(time + ' : ' + name)
+
+	conn.close()
+
+def menu_exchange_data_insert(date_string, date_number, location, count, name, exchange, menu) :
+	conn = pymongo.MongoClient("localhost", 27017)
+	db = conn.meal_data
+	collection = db[date_number]
+
+	time = count_to_time(count)
+	if count == 0 :
+		#데이터 생성
+		collection.insert(
+			{
+				'day' : date_string,
+				'date' : date_number,
+				'location' : location,
+				'arr_menu' : [
+					{
+						'time' : time,
+						'name' : name,
+						'cost' : exchange,
+						'menu' : menu
+					}
+				]
+			}
+		)
+		print(time + ' : ' + name)
+	else :
+		#데이터 추가(array 부분에)
+		collection.update(
+			{
+				'date' : date_number,
+				'location' : location
+			},
+			{
+				'$push' : {
+					'arr_menu' : {
+						'time' : time,
+						'name' : name,
+						'cost' : exchange,
+						'menu' : menu
+					}
+				}
+			}
+		)
+		print(time + ' : ' + name)
 
 	conn.close()
 
