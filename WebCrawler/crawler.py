@@ -44,7 +44,7 @@ def func_crawling() :
 					for data in menu_data :
 						if(data.h3 != None) :
 							name = data.h3.text
-							name = name.replace('\n', '').replace.('\t', '')
+							name = name.replace('\n', '').replace('\t', '')
 						else :
 							name = "메뉴"
 						menu = data.p.text
