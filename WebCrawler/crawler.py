@@ -24,10 +24,11 @@ def func_crawling() :
 			location = row.find_all("th")[0].text.replace('\t', '').replace('\n', '')
 			meal_list = row.find_all("td")
 			for data in meal_list :
+				time = count_to_time(counter)
 				menu_data = data.find_all("li")
 				if(len(menu_data) == 0) :
 					result = "식단 없음"
-					non_menu_data_insert(date_string, date_number, location, counter, result)
+					non_menu_data_insert(counter, date_string, date_number, location, time, result)
 				else :
 					for data in menu_data :
 						#메뉴 제목 존재여부 판별 후, 없으면 임의로 입력함
@@ -42,11 +43,12 @@ def func_crawling() :
 						if title.find('-') != -1 :
 							#가격 있는 경우 --> split 수행하고, 데이터 저장
 							title_array = title.split('-')
-							menu_exchange_data_insert(date_string, date_number, location, counter,
+							menu_exchange_data_insert(counter, date_string, date_number, location, time,
 													  title_array[0], title_array[1], menu)
 						else :
-							menu_data_insert(date_string, date_number, location, counter, title, menu)
+							menu_data_insert(counter, date_string, date_number, location, time, title, menu)
 
+				print('데이터 입력 : ' + location + ' - ' + time)
 				counter = counter + 1
 	finally :
 		driver.quit()
@@ -67,14 +69,13 @@ def count_to_time(count) :
 		3 : "야식"
 	}.get(count, "점심")
 
-def non_menu_data_insert(date_string, date_number, location, count, result) :
+def non_menu_data_insert(_id, date_string, date_number, location, time, result) :
 	#식단 없을 때 데이터 저장 함수
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
 	collection = db[date_number]
 
-	time = count_to_time(count)
-	if count == 0 :
+	if _id == 0 :
 		#데이터 생성
 		collection.insert(
 			{
@@ -89,7 +90,6 @@ def non_menu_data_insert(date_string, date_number, location, count, result) :
 				]
 			}
 		)
-		print(time + ' : ' + result)
 	else :
 		#데이터 추가(array 부분에)
 		collection.update(
@@ -106,18 +106,16 @@ def non_menu_data_insert(date_string, date_number, location, count, result) :
 				 }
 			}
 		)
-		print(time + ' : ' + result)
 
 	conn.close()
 
-def menu_data_insert(date_string, date_number, location, count, name, menu) :
+def menu_data_insert(_id, date_string, date_number, location, time, name, menu) :
 	#식단 데이터만 저장하는 함수(가격 x)
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
 	collection = db[date_number]
 
-	time = count_to_time(count)
-	if count == 0 :
+	if _id == 0 :
 		#데이터 생성
 		collection.insert(
 			{
@@ -133,7 +131,6 @@ def menu_data_insert(date_string, date_number, location, count, name, menu) :
 				]
 			}
 		)
-		print(time + ' : ' + name)
 	else :
 		#데이터 추가(array 부분에)
 		collection.update(
@@ -151,18 +148,16 @@ def menu_data_insert(date_string, date_number, location, count, name, menu) :
 				}
 			}
 		)
-		print(time + ' : ' + name)
 
 	conn.close()
 
-def menu_exchange_data_insert(date_string, date_number, location, count, name, exchange, menu) :
+def menu_exchange_data_insert(_id, date_string, date_number, location, time, name, exchange, menu) :
 	#식단 및 가격 데이터 저장 함수
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
 	collection = db[date_number]
 
-	time = count_to_time(count)
-	if count == 0 :
+	if _id == 0 :
 		#데이터 생성
 		collection.insert(
 			{
@@ -179,7 +174,6 @@ def menu_exchange_data_insert(date_string, date_number, location, count, name, e
 				]
 			}
 		)
-		print(time + ' : ' + name)
 	else :
 		#데이터 추가(array 부분에)
 		collection.update(
@@ -198,7 +192,6 @@ def menu_exchange_data_insert(date_string, date_number, location, count, name, e
 				}
 			}
 		)
-		print(time + ' : ' + name)
 
 	conn.close()
 
