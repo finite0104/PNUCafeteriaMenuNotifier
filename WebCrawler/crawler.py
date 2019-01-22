@@ -6,13 +6,6 @@ import pymongo
 
 def func_crawling() :
 	try :
-		"""
-		데이터들에 대한 \n, \t 문자 제거 작업
-		
-		Menu 데이터는 \n 데이터를 , 또는 / 등으로 치환하여 
-		어떤 메뉴인지를 쉽게 판별할 수 있도록 설정
-		"""
-
 		options = Options()
 		options.set_headless(True)
 		driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
@@ -36,17 +29,15 @@ def func_crawling() :
 					result = "식단 없음"
 					non_menu_data_insert(date_string, date_number, location, counter, result)
 				else :
-					"""
-					name = data.h3.text
-					AttributeError: 'NoneType' object has no attribute 'text'
-					--> Menu Title 없을 때가 있음.. IF-ELSE 처리
-					"""
 					for data in menu_data :
 						if(data.h3 != None) :
-							title = data.h3.text
+							title = data.h3.text.replace(' ', '')
 						else :
 							title = "메뉴"
 						menu = data.p.text.replace('\n', ', ')
+						print(menu.rfind(', '))
+						print((len(menu)-1))
+						print(menu.rfind(', ') == (len(menu)-1))
 						#메뉴에 가격이 있는경우, 가격도 저장될 수 있도록 설정
 						if title.find('-') != -1 :
 							#가격 있는 경우 --> split 수행하고, 데이터 저장
@@ -69,6 +60,7 @@ def count_to_time(count) :
 	}.get(count, "점심")
 
 def non_menu_data_insert(date_string, date_number, location, count, result) :
+	#식단 없을 때 데이터 저장 함수
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
 	collection = db[date_number]
@@ -111,6 +103,7 @@ def non_menu_data_insert(date_string, date_number, location, count, result) :
 	conn.close()
 
 def menu_data_insert(date_string, date_number, location, count, name, menu) :
+	#식단 데이터만 저장하는 함수(가격 x)
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
 	collection = db[date_number]
@@ -155,6 +148,7 @@ def menu_data_insert(date_string, date_number, location, count, name, menu) :
 	conn.close()
 
 def menu_exchange_data_insert(date_string, date_number, location, count, name, exchange, menu) :
+	#식단 및 가격 데이터 저장 함수
 	conn = pymongo.MongoClient("localhost", 27017)
 	db = conn.meal_data
 	collection = db[date_number]
