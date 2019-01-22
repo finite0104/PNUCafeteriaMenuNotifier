@@ -34,10 +34,10 @@ def func_crawling() :
 							title = data.h3.text.replace(' ', '')
 						else :
 							title = "메뉴"
-						menu = data.p.text.replace('\n', ', ')
-						print(menu.rfind(', '))
-						print((len(menu)-1))
-						print(menu.rfind(', ') == (len(menu)-1))
+
+						#식단 데이터의 잘못된 comma 삭제하는 함수 실행, 결과값을 가져옴
+						menu = modify_menu_text(data.p.text.replace('\n', ', '))
+
 						#메뉴에 가격이 있는경우, 가격도 저장될 수 있도록 설정
 						if title.find('-') != -1 :
 							#가격 있는 경우 --> split 수행하고, 데이터 저장
@@ -50,6 +50,13 @@ def func_crawling() :
 				counter = counter + 1
 	finally :
 		driver.quit()
+
+def modify_menu_text(text) :
+	if text.rfind(', ') == (len(text) - 2) :
+		result = text[:-2]
+	else :
+		result = text
+	return result
 
 def count_to_time(count) :
 	return {
