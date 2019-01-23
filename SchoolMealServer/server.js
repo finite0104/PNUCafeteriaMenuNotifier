@@ -20,8 +20,12 @@ app.use(function (req, res) {
 var FCMClientAPI = require('./api/FCMClient')
 app.use('/api/FCMClient', FCMClientAPI)
 
+/*
+식단 데이터 API 개발 진행중
+
 var MealDataAPI = require('./api/MealData')
 app.use('/api/MealData', MealDataAPI)
+*/
 
 //Create Server
 var port = config.PORT
