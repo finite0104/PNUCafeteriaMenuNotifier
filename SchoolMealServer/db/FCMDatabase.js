@@ -1,6 +1,6 @@
 var mongodb = require('mongodb')
 var config = require('../config')
-var mongoClient = mongodb.Client
+var mongoClient = mongodb.MongoClient
 var mongoClientURI = config.MONGO_URI_CLIENTS_ID
 
 module.exports.getClientTokens = function(callback) {
@@ -19,7 +19,7 @@ module.exports.getClientTokens = function(callback) {
                     callback(result)
                 }
                 
-                db.close()
+                database.close()
             })
         }
     })
@@ -41,7 +41,7 @@ module.exports.insertClientToken = function(token, callback) {
                 } else {
                     if (doc == null) {
                         // 입력된 Token 데이터가 DB에 저장되어있지 않음 ==> 새로 등록
-                        db.collection('user_token').insertOne(tokenValue, function(err, result) {
+                        database.db().collection('user_token').insertOne(tokenValue, function(err, result) {
                             if (err) {
                                 console.log('[Message] MongoDB User Insert Error\n[Message] Error Code : ' + err)
                                 callback(false)
@@ -50,7 +50,7 @@ module.exports.insertClientToken = function(token, callback) {
                                 callback(true)
                             }
 
-                            db.close()
+                            database.close()
                         })
                     }
                 }
@@ -68,7 +68,7 @@ module.exports.deleteClientToken = function(token, callback) {
             console.log('[Message] MongoDB Connect!')
             // TODO..
             var tokenValue = {token_value : token}
-            database.collection('user_token').deleteOne(tokenValue, function(err, result) {
+            database.db().collection('user_token').deleteOne(tokenValue, function(err, result) {
                 if (err) {
                     console.log('[Message] MongoDB Delete Error\n[Message] Error Code : ' + err)
                     callback(false)
@@ -77,7 +77,7 @@ module.exports.deleteClientToken = function(token, callback) {
                     callback(true)
                 }
 
-                db.close()
+                database.close()
             })
         }
     })

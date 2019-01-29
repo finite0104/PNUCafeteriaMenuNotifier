@@ -1,17 +1,17 @@
 var mongodb = require('mongodb')
 var config = require('../config')
-var mongoClient = mongodb.Client
+var mongoClient = mongodb.MongoClient
 var mongoClientURI = config.MONGO_URI_MEAL_DATA
 
 module.exports.getPNUMealData = function(callback) {
-    mongoClient.connect(mongoClientURI, function(err, db) {
+    mongoClient.connect(mongoClientURI, function(err, database) {
         if (err) {
             console.log('[Message] MongoDB Connect Error\n[Message] Error Code : ' + err)
             callback(false)
         } else {
             console.log('[Message] MongoDB Connect!')
             // TODO..
-            db.collection('user_token').find({}).toArray(function(err, result) {
+            database.db().collection('user_token').find({}).toArray(function(err, result) {
                 if (err) {
                     console.log('[Message] MongoDB Find Error\n[Message] Error Code : ' + err)
                     callback(false)
@@ -19,7 +19,7 @@ module.exports.getPNUMealData = function(callback) {
                     callback(result)
                 }
                 
-                db.close()
+                database.close()
             })
         }
     })
