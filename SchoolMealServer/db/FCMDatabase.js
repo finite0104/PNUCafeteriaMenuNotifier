@@ -1,7 +1,7 @@
 var mongodb = require('mongodb')
 var config = require('../config')
 var mongoClient = mongodb.Client
-var mongoClientURI = config.MONGO_URI_MEAL_DATA
+var mongoClientURI = config.MONGO_URI_CLIENTS_ID
 
 module.exports.getClientTokens = function(callback) {
     mongoClient.connect(mongoClientURI, function(err, db) {

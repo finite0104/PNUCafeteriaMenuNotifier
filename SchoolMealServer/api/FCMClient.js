@@ -3,13 +3,13 @@ var express = require('express')
 var router = express.Router()
 var dbConnector = require('../db/FCMDatabase')
 
-router.get('/', function(req, res) {
+router.get('/getClientTokens', function(req, res) {
     dbConnector.getClientTokens(function(result) {
         res.send(result)
     })
 })
 
-router.post('/', function(req, res) {
+router.post('/setClientToken', function(req, res) {
     var requestTokenValue = req.body
     
     dbConnector.insertClientToken(requestTokenValue, function(result) {
@@ -17,7 +17,7 @@ router.post('/', function(req, res) {
     })
 })
 
-router.delete('/:token', function(req, res) {
+router.delete('/deleteToken/:token', function(req, res) {
     var requestTokenValue = req.params.token
 
     dbConnector.deleteClientToken(requestTokenValue, function(result) {

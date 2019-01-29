@@ -25,6 +25,6 @@ app.use('/meal', MealDataAPI)
 
 //Create Server
 var port = config.PORT
-app.listen(port, '0.0.0.0', function() {
+app.listen(port, function() {
     console.log('[Message] Server Start - Listening Port : ' + port)
 })
