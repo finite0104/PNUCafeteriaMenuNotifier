@@ -4,14 +4,14 @@ var mongoClient = mongodb.Client
 var mongoClientURI = config.MONGO_URI_CLIENTS_ID
 
 module.exports.getClientTokens = function(callback) {
-    mongoClient.connect(mongoClientURI, function(err, db) {
+    mongoClient.connect(mongoClientURI, function(err, database) {
         if (err) {
             console.log('[Message] MongoDB Connect Error\n[Message] Error Code : ' + err)
             callback(false)
         } else {
             console.log('[Message] MongoDB Connect!')
             // TODO..
-            db.collection('user_token').find({}).toArray(function(err, result) {
+            database.db().collection('user_token').find({}).toArray(function(err, result) {
                 if (err) {
                     console.log('[Message] MongoDB Find Error\n[Message] Error Code : ' + err)
                     callback(false)
@@ -26,7 +26,7 @@ module.exports.getClientTokens = function(callback) {
 }
 
 module.exports.insertClientToken = function(token, callback) {
-    mongoClient.connect(mongoClientURI, function(err, db) {
+    mongoClient.connect(mongoClientURI, function(err, database) {
         if (err) {
             console.log('[Message] MongoDB Connect Error\n[Message] Error Code : ' + err)
             callback(false)
@@ -34,7 +34,7 @@ module.exports.insertClientToken = function(token, callback) {
             console.log('[Message] MongoDB Connect!')
             // TODO..
             var tokenValue = {token_value : token}
-            db.collection('user_token').findOne(tokenValue, function(err, doc) {
+            database.db().collection('user_token').findOne(tokenValue, function(err, doc) {
                 if (err) {
                     console.log('[Message] MongoDB Find Error\n[Message] Error Code : ' + err)
                     callback(false)
@@ -60,7 +60,7 @@ module.exports.insertClientToken = function(token, callback) {
 }
 
 module.exports.deleteClientToken = function(token, callback) {
-    mongoClient.connect(mongoClientURI, function(err, db) {
+    mongoClient.connect(mongoClientURI, function(err, database) {
         if (err) {
             console.log('[Message] MongoDB Connect Error\n[Message] Error Code : ' + err)
             callback(false)
@@ -68,7 +68,7 @@ module.exports.deleteClientToken = function(token, callback) {
             console.log('[Message] MongoDB Connect!')
             // TODO..
             var tokenValue = {token_value : token}
-            db.collection('user_token').deleteOne(tokenValue, function(err, result) {
+            database.collection('user_token').deleteOne(tokenValue, function(err, result) {
                 if (err) {
                     console.log('[Message] MongoDB Delete Error\n[Message] Error Code : ' + err)
                     callback(false)
