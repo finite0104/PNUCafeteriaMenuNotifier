@@ -13,7 +13,9 @@ app.use(function (req, res) {
     //요청 허용 Method 설정
     res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE')
     //요청 허용 Header 타입 설정
-    res.header('Access-Control-Allow-Headers', 'content-type')
+    res.header('Access-Control-Allow-Headers', 'Content-Type')
+    //Callback 호출
+    next()
 })
 
 //API Connect
@@ -25,6 +27,6 @@ app.use('/meal', MealDataAPI)
 
 //Create Server
 var port = config.PORT
-app.listen(port, function() {
+app.listen(port, '0.0.0.0', function() {
     console.log('[Message] Server Start - Listening Port : ' + port)
 })
