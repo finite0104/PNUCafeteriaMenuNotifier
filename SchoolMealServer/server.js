@@ -7,7 +7,7 @@ var app = express()
 //Request Processing
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(bodyParser.json())
-app.use(function (req, res) {
+app.use(function (req, res, next) {
     //요청 허용 URL 설정
     res.header('Access-Control-Allow-Origin', '*')
     //요청 허용 Method 설정
