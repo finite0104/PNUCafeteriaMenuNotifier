@@ -3,16 +3,12 @@ var express = require('express')
 var router = express.Router()
 var dbConnector = require('../db/MealDatabase')
 
-router.get('/', function(req, res) {
+router.get('/:date', function(req, res, next) {
+    var requestDateValue = req.params.date
 
-})
-
-router.post('/', function(req, res) {
-
-})
-
-router.delete('/:token', function(req, res) {
-
+    dbConnector.getPNUMealDataForDay(requestDateValue, function(result) {
+        res.send(result)
+    })
 })
 
 module.exports = router
