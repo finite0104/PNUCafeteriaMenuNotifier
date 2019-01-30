@@ -3,9 +3,10 @@ var express = require('express')
 var router = express.Router()
 var dbConnector = require('../db/MealDatabase')
 
-router.get('/', function(req, res, next) {
-    var now = new Date(Date.now())
-    var dateString = getDateString(now)
+router.get('/:date', function(req, res, next) {
+    //var now = new Date(Date.now())
+    //var dateString = getDateString(now)
+    var dateString = req.params.date
 
     dbConnector.getPNUMealDataForDay(dateString, function(result) {
         res.send(result)
