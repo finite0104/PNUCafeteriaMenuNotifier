@@ -26,6 +26,7 @@ def count_to_time(count) :
 	크롤링 수행 함수
 """
 def pnu_web_crawling() :
+	#RETURN 만들고, CATCH 구문 추가 필요
 	try :
 		options = Options()
 		options.set_headless(True)
