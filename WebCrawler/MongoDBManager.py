@@ -135,6 +135,9 @@ def get_push_device_tokens() :
     db = conn.user_ids
     collection = db['user_token']
 
+    device_token = []
+    for data in collection.find() :
+        device_token.append(data['token_value'])
 
     conn.close()
-    return None
+    return device_token
