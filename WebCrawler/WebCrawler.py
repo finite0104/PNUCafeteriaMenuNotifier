@@ -6,7 +6,7 @@ import MongoDBManager
 """
 	문자열 처리 함수
 """
-def modify_menu_text(text) :
+def _modify_menu_text(text) :
 	#텍스트 끝 두 자리가 ', '이면 그 문자열을 없애도록 함
 	if text.rfind(', ') == (len(text) - 2) :
 		result = text[:-2]
@@ -14,7 +14,7 @@ def modify_menu_text(text) :
 		result = text
 	return result
 
-def count_to_time(count) :
+def _count_to_time(count) :
 	return {
 		0 : "조식",
 		1 : "점심",
@@ -46,7 +46,7 @@ def pnu_web_crawling() :
 			location = row.find_all("th")[0].text.replace('\t', '').replace('\n', '')
 			meal_list = row.find_all("td")
 			for data in meal_list :
-				time = count_to_time(counter)
+				time = _count_to_time(counter)
 				menu_data = data.find_all("li")
 				if(len(menu_data) == 0) :
 					result = "식단 없음"
@@ -59,7 +59,7 @@ def pnu_web_crawling() :
 						else :
 							title = "메뉴"
 						#식단 데이터의 잘못된 comma 삭제하는 함수 실행, 결과값을 가져옴
-						menu = modify_menu_text(data.p.text.replace('\n', ', '))
+						menu = _modify_menu_text(data.p.text.replace('\n', ', '))
 
 						#메뉴에 가격이 있는경우, 가격도 저장될 수 있도록 설정
 						if title.find('-') != -1 :
