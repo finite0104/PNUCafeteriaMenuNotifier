@@ -128,3 +128,13 @@ def menu_exchange_data_insert(_id, date_string, date_number, location, time, nam
         )
 
     conn.close()
+
+def get_push_device_tokens() :
+    #알림 보낼 디바이스 토큰들 가져오는 함수
+    conn = pymongo.MongoClient("localhost", 27017)
+    db = conn.user_ids
+    collection = db['user_token']
+
+
+    conn.close()
+    return None
