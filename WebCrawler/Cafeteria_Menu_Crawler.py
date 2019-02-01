@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import WebCrawler
 import FCMManager
 import time
