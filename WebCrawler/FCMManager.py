@@ -24,4 +24,4 @@ class FCM_Manager :
             message_body='test_message',
         )
 
-        print result
+        return result
