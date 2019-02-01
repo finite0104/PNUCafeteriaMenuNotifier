@@ -1,0 +1,10 @@
+{
+  "MONGODB" : {
+    "HOST" : "127.0.0.1",
+    "PORT" : 27017,
+  },
+  "FCM" : {
+    "API_KEY" : "AAAArtO7_NU:APA91bHcBSIOHCQA9TbTvs-PdEoQnxyCGeiu3YZjFyU5CcHVYHJf3Ik7WXMVhvzr5Bs2hVYCa9MIC2orZYPO0CGtOxyNqRLuiW_g9loq7aTgGTqcmFSUmQGuZjzqzc694wKC1t0_Tnxm",
+    "USER_ID" : "750876622037",
+  }
+}
