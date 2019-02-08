@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "750876622037",
+    "firebase_url": "https://pnu-cafeteria-menu.firebaseio.com",
+    "project_id": "pnu-cafeteria-menu",
+    "storage_bucket": "pnu-cafeteria-menu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750876622037:android:d65a6caedf426da5",
+        "android_client_info": {
+          "package_name": "parksh.cafeteria.menu.noti.pnucafeteriamenunotifierapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750876622037-anhptkjouip925illpas9uqrd7716n6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6erdLIV_7sn1xzwiHSMWVVD5_q5EvMo4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
