@@ -18,6 +18,10 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             토큰 발행 시 호출되는 함수
             토큰 발행 후 서버 연결
              -> 서버로 토큰 데이터 전송하도록 기능 개발
+
+            ** 토큰 발행 기준 **
+            * Application 설치 및 재설치
+            * 앱 데이터 전체 삭제 등의 문제 발생 시
         */
         Log.d(MESSAGING_TAG, "New Token : $token")
     }
