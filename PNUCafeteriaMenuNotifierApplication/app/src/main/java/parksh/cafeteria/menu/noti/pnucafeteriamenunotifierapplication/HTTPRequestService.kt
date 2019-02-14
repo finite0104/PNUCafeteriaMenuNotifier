@@ -27,7 +27,7 @@ class HTTPRequestService : AsyncTask<String, String, String>() {
         return result
     }
 
-    fun postRequest(serverURL: URL, token: String) : String? {
+    private fun postRequest(serverURL: URL, token: String) : String? {
         val conn = serverURL.openConnection() as HttpURLConnection
         conn.requestMethod = "POST"
         conn.connectTimeout = 300000
@@ -64,7 +64,7 @@ class HTTPRequestService : AsyncTask<String, String, String>() {
         return null
     }
 
-    fun getRequest(serverURL : URL) : String? {
+    private fun getRequest(serverURL : URL) : String? {
         val conn = serverURL.openConnection() as HttpURLConnection
         conn.requestMethod = "GET"
         conn.connectTimeout = 300000
