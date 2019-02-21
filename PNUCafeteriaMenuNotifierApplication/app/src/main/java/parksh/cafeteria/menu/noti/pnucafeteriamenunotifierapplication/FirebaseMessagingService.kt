@@ -12,6 +12,7 @@ import com.google.firebase.messaging.RemoteMessage
 
 class FirebaseMessagingService : FirebaseMessagingService() {
     private val MESSAGING_TAG = "MessagingService"
+    private val TOKEN_REQUEST_URL = "http://unsplash.ddns.net/FCMClient/setClientToken"
 
     override fun onNewToken(token: String?) {
         /*
@@ -24,6 +25,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             * 앱 데이터 전체 삭제 등의 문제 발생 시
         */
         Log.d(MESSAGING_TAG, "New Token : $token")
+        HTTPRequestService().execute(TOKEN_REQUEST_URL, token)
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
