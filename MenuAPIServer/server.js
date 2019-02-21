@@ -22,8 +22,8 @@ app.use(function (req, res, next) {
 var FCMClientAPI = require('./api/FCMClient')
 app.use('/client', FCMClientAPI)
 
-var MealDataAPI = require('./api/MealData')
-app.use('/meal', MealDataAPI)
+var MenuDataAPI = require('./api/MenuData')
+app.use('/menu', MenuDataAPI)
 
 //Create Server
 var port = config.PORT
