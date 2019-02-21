@@ -1,6 +1,7 @@
 package parksh.cafeteria.menu.noti.pnucafeteriamenunotifierapplication
 
 import android.os.AsyncTask
+import android.util.Log
 import java.io.BufferedInputStream
 import java.io.BufferedReader
 import java.io.DataOutputStream
@@ -10,6 +11,8 @@ import java.net.URL
 import java.nio.charset.StandardCharsets
 
 class HTTPRequestService : AsyncTask<String, String, String>() {
+    private val TAG = "HTTPRequestService"
+
     override fun onPreExecute() {
         //Before doInBackground
     }
@@ -97,5 +100,10 @@ class HTTPRequestService : AsyncTask<String, String, String>() {
 
     override fun onPostExecute(result: String?) {
         //After doInBackground
+        if(result == null) {
+            Log.d(TAG, "Failed")
+        } else {
+            Log.d(TAG, "Success")
+        }
     }
 }
