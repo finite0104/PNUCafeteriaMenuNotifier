@@ -7,4 +7,16 @@
         android:layout_height="match_parent"
         tools:context=".IntroActivity">
 
+    <TextView
+            android:text="Intro__Test"
+            android:layout_width="99dp"
+            android:layout_height="27dp" tools:layout_editor_absoluteY="242dp"
+            tools:layout_editor_absoluteX="143dp" android:id="@+id/textView" android:textStyle="bold"
+            android:textSize="18sp"/>
+    <Button
+            android:text="Firebase Restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="354dp"
+            tools:layout_editor_absoluteX="117dp" android:id="@+id/btn_restart" android:onClick="clickRestartButton"
+            android:visibility="invisible"/>
 </android.support.constraint.ConstraintLayout>
