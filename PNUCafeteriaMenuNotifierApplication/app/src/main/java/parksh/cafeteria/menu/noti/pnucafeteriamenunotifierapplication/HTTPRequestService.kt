@@ -2,6 +2,7 @@ package parksh.cafeteria.menu.noti.pnucafeteriamenunotifierapplication
 
 import android.os.AsyncTask
 import android.util.Log
+import org.json.JSONObject
 import java.io.BufferedInputStream
 import java.io.BufferedReader
 import java.io.DataOutputStream
@@ -21,10 +22,10 @@ class HTTPRequestService : AsyncTask<String, String, String>() {
         val serverURL = URL(params[0])
         var result:String?
         if(params[1] != null) {
-            result = getRequest(serverURL)
+            val token = params[1]
+            result = postRequest(serverURL, token!!)
         } else {
-            val token = params[1].toString()
-            result = postRequest(serverURL, token)
+            result = getRequest(serverURL)
         }
 
         return result
@@ -36,14 +37,15 @@ class HTTPRequestService : AsyncTask<String, String, String>() {
         conn.connectTimeout = 300000
         conn.doOutput = true
 
-        val sendTokenValue: ByteArray = token.toByteArray(StandardCharsets.UTF_8)
         conn.setRequestProperty("Charset", "utf-8")
-        conn.setRequestProperty("Content-Length", sendTokenValue.size.toString())
         conn.setRequestProperty("Content-Type", "application/json")
+
+        var reqBody = JSONObject()
+        reqBody.put("token", token)
 
         try {
             val outputStream = DataOutputStream(conn.outputStream)
-            outputStream.write(sendTokenValue)
+            outputStream.writeBytes(reqBody.toString())
             outputStream.flush()
         } catch (e: Exception) {
             //TODO : Exception Message 표시 및 Connection 연결 종료
