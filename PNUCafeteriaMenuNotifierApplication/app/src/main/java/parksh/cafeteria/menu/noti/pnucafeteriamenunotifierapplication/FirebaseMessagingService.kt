@@ -12,7 +12,7 @@ import com.google.firebase.messaging.RemoteMessage
 
 class FirebaseMessagingService : FirebaseMessagingService() {
     private val MESSAGING_TAG = "MessagingService"
-    private val TOKEN_REQUEST_URL = "http://unsplash.ddns.net/FCMClient/setClientToken"
+    private val TOKEN_REQUEST_URL = "http://unsplash.ddns.net:28300/client/setClientToken"
 
     override fun onNewToken(token: String?) {
         /*
