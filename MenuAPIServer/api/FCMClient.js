@@ -10,7 +10,7 @@ router.get('/getClientTokens', function(req, res, next) {
 })
 
 router.post('/setClientToken', function(req, res, next) {
-    var requestTokenValue = req.body
+    var requestTokenValue = req.body.token
     
     dbConnector.insertClientToken(requestTokenValue, function(result) {
         res.send(result)
