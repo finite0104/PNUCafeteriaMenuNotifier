@@ -1,11 +1,10 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from selenium.common.exceptions import TimeoutException
 import MongoDBManager
 
-"""
-	문자열 처리 함수
-"""
+# Text Processing Function
 def _modify_menu_text(text) :
 	#텍스트 끝 두 자리가 ', '이면 그 문자열을 없애도록 함
 	if text.rfind(', ') == (len(text) - 2) :
@@ -22,11 +21,8 @@ def _count_to_time(count) :
 		3 : "야식"
 	}.get(count, "점심")
 
-"""
-	크롤링 수행 함수
-"""
+# Web Data Crawling Function
 def pnu_web_crawling() :
-	#RETURN 만들고, CATCH 구문 추가 필요
 	try :
 		options = Options()
 		options.set_headless(True)
@@ -74,5 +70,11 @@ def pnu_web_crawling() :
 
 				print('데이터 입력 : ' + location + ' - ' + time)
 				counter = counter + 1
+				crawling_result = true
+	except Exception as exception :
+		print('Error Occured! Error Code : {}'.format(exception))
+		crawling_result = false
 	finally :
 		driver.quit()
+
+	return crawling_result
