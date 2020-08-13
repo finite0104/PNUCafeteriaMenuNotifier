@@ -54,8 +54,11 @@ def pnu_web_crawling() :
 							title = data.h3.text.replace(' ', '')
 						else :
 							title = "메뉴"
+						
 						#식단 데이터의 잘못된 comma 삭제하는 함수 실행, 결과값을 가져옴
-						menu = _modify_menu_text(data.p.text.replace('\n', ', '))
+						#p 태그 존재하는지 한번 확인하고 실행
+						if(data.p != None) :
+							menu = _modify_menu_text(data.p.text.replace('\n', ', '))
 
 						#메뉴에 가격이 있는경우, 가격도 저장될 수 있도록 설정
 						if title.find('-') != -1 :
