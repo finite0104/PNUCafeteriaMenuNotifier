@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import TimeoutException
 import MongoDBManager
+import logging
 
 # Text Processing Function
 def _modify_menu_text(text) :
@@ -24,6 +25,7 @@ def _count_to_time(count) :
 # Web Data Crawling Function
 def pnu_web_crawling() :
 	try :
+		logging.info("Web Crawling Start")
 		options = Options()
 		options.set_headless(True)
 		driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
@@ -36,6 +38,8 @@ def pnu_web_crawling() :
 		school_meal_table = soup.find_all("table", {"class": "menu-tbl"})[0]
 		table_body = school_meal_table.find_all("tbody")[0]
 		table_datas = table_body.find_all("tr")
+
+		logging.info("Get Menu Table Data")
 
 		for row in table_datas :
 			counter = 0
@@ -71,7 +75,8 @@ def pnu_web_crawling() :
 							MongoDBManager.menu_data_insert(counter, date_string, date_number,
 															location, time, title, menu)
 
-				print('데이터 입력 : ' + location + ' - ' + time)
+				table_log_msg = "Insert Data : {location}, {counter}".format(location=location, counter=time)
+				logging.info(table_log_msg)
 				counter = counter + 1
 				crawling_result = True
 	except Exception as exception :

@@ -1,4 +1,5 @@
 import pymongo
+import logging
 
 """
 	MongoDB 데이터 저장 함수
@@ -138,6 +139,9 @@ def get_push_device_tokens() :
     device_token = []
     for data in collection.find() :
         device_token.append(data['token_value'])
+    
+    info_log_msg = "Get Device Tokens - Token Counts : {}".format(len(device_token))
+    logging.info(info_log_msg)
 
     conn.close()
     return device_token
