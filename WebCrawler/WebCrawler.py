@@ -73,10 +73,10 @@ def pnu_web_crawling() :
 
 				print('데이터 입력 : ' + location + ' - ' + time)
 				counter = counter + 1
-				crawling_result = true
+				crawling_result = True
 	except Exception as exception :
 		print('Error Occured! Error Code : {}'.format(exception))
-		crawling_result = false
+		crawling_result = False
 	finally :
 		driver.quit()
 
