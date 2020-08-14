@@ -2,25 +2,51 @@ import logging
 import logging.handlers
 import os
 
-def loggingInit() :
-    # 로그 저장할 폴더 생성
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    log_dir = '{}/logs'.format(current_dir)
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
+class Singleton(type) :
+    _instance = {}
 
-    # 로거 생성
-    crawlerLogger = logging.getLogger('MenuCrawler') # 로거 이름: MenuCrawler
-    crawlerLogger.setLevel(logging.INFO) # 로깅 수준: INFO
+    def __call__(cls, *args, **kwargs) :
+        if cls not in cls._instance :
+            cls._instance[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+        return cls._instance[cls]
 
-    # 핸들러 생성
-    file_handler = logging.handlers.TimedRotatingFileHandler(
-    filename='menu-crawler.log', when='midnight', interval=1,  encoding='utf-8'
-    ) # 자정마다 한 번씩 로테이션
-    file_handler.suffix = '%Y%m%d' # 로그 파일명 날짜 기록 부분 포맷 지정 
+class MenuCrawlerLogger(metaclass=Singleton):
+    _logger = None
 
-    crawlerLogger.addHandler(file_handler) # 로거에 핸들러 추가
-    formatter = logging.Formatter(
-    '[%(asctime)s] [%(filename)s:%(lineno)d] - (%(levelname)s) : %(message)s '
-    )
-    file_handler.setFormatter(formatter) # 핸들러에 로깅 포맷 할당
+    def __init__(self) :
+        # 로거 클래스 생성 시 작업할 내용 - 로그 폴더 생성, 로거, 행들러 생성 등 주요작업
+        # Create Save Log Folder
+        current_dir = os.path.dirname(os.path.realpath(__file__))
+        log_dir = '{}/logs'.format(current_dir)
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir)
+
+        # Create Logger (Class Variable)
+        self._logger = logging.getLogger('MenuCrawler')
+        self._logger.setLevel(logging.INFO)
+
+        # Create Logging Handler
+        # 자정마다 로그 파일을 생성함
+        file_handler = logging.handlers.TimedRotatingFileHandler(
+            filename='menu-crawler.log', when='midnight', interval=1, encoding='utf-8'
+        )
+        file_handler.suffix = '%U%m%d'
+        file_handler.setLevel(logging.INFO)
+
+        stream_handler = logging.StreamHandler()
+        stream_handler.setLevel(logging.INFO)
+
+        # Log Formatter Create and Set Formatter
+        formatter = logging.Formatter(
+            '[%(asctime)s] [%(filename)s:%(lineno)d] - (%(levelname)s) : %(message)s'
+        )
+        file_handler.setFormatter(formatter)
+        stream_handler.setFormatter(formatter)
+
+        # Logging Handler adding
+        self._logger.addHandler(file_handler)
+        self._logger.addHandler(stream_handler)
+
+    def get_logger(self) :
+        # Return Logger
+        return self._logger

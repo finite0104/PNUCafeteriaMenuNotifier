@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import TimeoutException
 import MongoDBManager
-import logging
+from MenuCrawlerLogger import MenuCrawlerLogger
 
 # Text Processing Function
 def _modify_menu_text(text) :
@@ -24,22 +24,27 @@ def _count_to_time(count) :
 
 # Web Data Crawling Function
 def pnu_web_crawling() :
+	# Get Logger
+	logger = MenuCrawlerLogger.__call__().get_logger()
+
+	# Web Driver Setting
+	options = Options()
+	options.set_headless(True)
+	driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
+		
 	try :
-		logging.info("Web Crawling Start")
-		options = Options()
-		options.set_headless(True)
-		driver = webdriver.Firefox(options=options, executable_path='./geckodriver')
+		logger.info("Web Crawling Start")
 		driver.get('http://www.pusan.ac.kr/kor/CMS/MenuMgr/menuListOnWeekly.do?mCode=MN203')
 
 		html = driver.page_source
-		soup = BeautifulSoup(html)
+		soup = BeautifulSoup(html, "html.parser")
 		date_string = soup.find_all("span", {"class": "loca"})[0].text
 		date_number = soup.find_all("span", {"class": "term"})[0].text
 		school_meal_table = soup.find_all("table", {"class": "menu-tbl"})[0]
 		table_body = school_meal_table.find_all("tbody")[0]
 		table_datas = table_body.find_all("tr")
 
-		logging.info("Get Menu Table Data")
+		logger.info("Get Menu Table Data")
 
 		for row in table_datas :
 			counter = 0
@@ -76,11 +81,12 @@ def pnu_web_crawling() :
 															location, time, title, menu)
 
 				table_log_msg = "Insert Data : {location}, {counter}".format(location=location, counter=time)
-				logging.info(table_log_msg)
+				logger.info(table_log_msg)
 				counter = counter + 1
 				crawling_result = True
 	except Exception as exception :
-		print('Error Occured! Error Code : {}'.format(exception))
+		exception_msg = 'Error Occured! Error Code : {}'.format(exception)
+		logger.info(exception_msg)
 		crawling_result = False
 	finally :
 		driver.quit()

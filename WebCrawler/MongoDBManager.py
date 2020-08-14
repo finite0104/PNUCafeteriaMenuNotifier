@@ -1,5 +1,5 @@
 import pymongo
-import logging
+from MenuCrawlerLogger import MenuCrawlerLogger
 
 """
 	MongoDB 데이터 저장 함수
@@ -131,6 +131,7 @@ def menu_exchange_data_insert(_id, date_string, date_number, location, time, nam
     conn.close()
 
 def get_push_device_tokens() :
+    logger = MenuCrawlerLogger.__call__().get_logger()
     #알림 보낼 디바이스 토큰들 가져오는 함수
     conn = pymongo.MongoClient("localhost", 27017)
     db = conn.user_ids
@@ -141,7 +142,7 @@ def get_push_device_tokens() :
         device_token.append(data['token_value'])
     
     info_log_msg = "Get Device Tokens - Token Counts : {}".format(len(device_token))
-    logging.info(info_log_msg)
+    logger.info(info_log_msg)
 
     conn.close()
     return device_token

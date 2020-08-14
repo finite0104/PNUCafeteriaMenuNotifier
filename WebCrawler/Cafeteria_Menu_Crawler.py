@@ -3,7 +3,7 @@ import WebCrawler
 import FCMManager
 import MenuCrawlerLogger
 import time
-import logging
+from MenuCrawlerLogger import MenuCrawlerLogger
 
 def menuCrawling() :
     WebCrawler.pnu_web_crawling()
@@ -11,14 +11,14 @@ def menuCrawling() :
     msg_send_result = fcm_manager.send_fcm_message()
     if msg_send_result["failure"] == 0 :
         # 실패 메시지 개수가 없으면 정상 전송된것으로 판단
-        logging.info("FCM Message Sending Success")
+        logger.info("FCM Message Sending Success")
     else :
         # 실패 메시지가 있음
         fail_log_message = "FCM Message Sending Failure, Count:{}".format(msg_send_result["failure"])
-        logging.warning(fail_log_message)
+        logger.warning(fail_log_message)
 
 if __name__ == "__main__" :
-    MenuCrawlerLogger.loggingInit()
+    logger = MenuCrawlerLogger.__call__().get_logger()
     while(True) :
         menuCrawling()
         """
