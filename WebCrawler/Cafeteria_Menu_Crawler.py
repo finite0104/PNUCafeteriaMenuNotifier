@@ -4,9 +4,8 @@ import FCMManager
 import time
 from apscheduler.schedulers.background import BackgroundScheduler
 
-# 스케줄러가 함수 실행 이후 -> 스케줄 대기 -> 재실행 순서가 아니고 스케줄 대기 -> 실행 순서임
-# 함수에 대한 우선적인 실행 작업이 필요하다.
-# thread 사용이 필요한지 확인해야함
+# 문제점 1 - 스케줄러가 함수 실행 이후 -> 스케줄 대기 -> 재실행 순서가 아니고 스케줄 대기 -> 실행 순서임
+# 함수에 대한 우선적인 실행 방법이 필요하다.
 def menu_crawling() :
     WebCrawler.pnu_web_crawling()
     msg_send_result = fcm_manager.send_fcm_message()
@@ -30,8 +29,10 @@ def schedulerInitialize() :
 
 if __name__ == "__main__" :
     scheduler = None
-    schedulerInitialize()
     fcm_manager = FCMManager.FCM_Manager()
+    # 문제점 1에 대한 임시 대응 - 스케줄링 작업하기 전에 크롤링 작업 한번 실행
+    menu_crawling()
+    schedulerInitialize()
     
     try :
         while(True) :
@@ -40,6 +41,5 @@ if __name__ == "__main__" :
             delay_time = 3
             time.sleep(delay_time)
     except (KeyboardInterrupt, SystemExit) :
-        if scheduler is not None :
-            # scheduler is alive --> scheduler shutdown
-            scheduler.shutdown()
+        # scheduler none type check해서 처리하는 경우 안꺼지는 문제 있음
+        scheduler.shutdown()
