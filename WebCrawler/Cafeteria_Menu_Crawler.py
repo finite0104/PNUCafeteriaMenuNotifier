@@ -20,21 +20,11 @@ def menu_crawling() :
         fail_log_message = "FCM Message Sending Failure, Count:{}".format(msg_send_result["failure"])
         logger.warning(fail_log_message)
 
-def scheduling_test_30interval() :
-    print('Scheduling - 30 Seconds')
-
-def scheduling_test_10interval() :
-    print('Scheduling - 10 Seconds')
-
 def schedulerInitialize() :
     scheduler = BackgroundScheduler()
     scheduler.start()
     # 6시간마다 크롤링 진행할 수 있도록 프로그램 작성함
     scheduler.add_job(menu_crawling, 'interval', hours=6)
-
-    # 테스트용 스케줄링 작업
-    scheduler.add_job(scheduling_test_10interval, 'interval', seconds=10)
-    scheduler.add_job(scheduling_test_30interval, 'interval', seconds=30)
 
 if __name__ == "__main__" :
     logger = MenuCrawlerLogger.__call__().get_logger()
@@ -53,4 +43,3 @@ if __name__ == "__main__" :
     except (KeyboardInterrupt, SystemExit) :
         # scheduler none type check해서 처리하는 경우 안꺼지는 문제 있음
         scheduler.shutdown()
-        
