@@ -27,8 +27,9 @@ class MenuCrawlerLogger(metaclass=Singleton):
 
         # Create Logging Handler
         # 자정마다 로그 파일을 생성함
+        log_filename = '{}/menu-crawler.log'.format(log_dir)
         file_handler = logging.handlers.TimedRotatingFileHandler(
-            filename='menu-crawler.log', when='midnight', interval=1, encoding='utf-8'
+            filename=log_filename, when='midnight', interval=1, encoding='utf-8'
         )
         file_handler.suffix = '%U%m%d'
         file_handler.setLevel(logging.INFO)
